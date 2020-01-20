@@ -6,27 +6,37 @@ import java.util.List;
 
 // 위험 패키지에 대한 위험도와 목록 관련 객체 클래스
 public class DangerPackageInfo {
-    public List<Integer> dangerDegreeList;
-    public List<PackageInfo> dangerPackageList;
+    public Integer dangerDegree;
+    public PackageInfo dangerPackage;
+    public List<String> dangerPermissionList;
 
-    public DangerPackageInfo(List<Integer> dangerDegreeList, List<PackageInfo> dangerPackageList) {
-        this.dangerDegreeList = dangerDegreeList;
-        this.dangerPackageList = dangerPackageList;
+    public DangerPackageInfo(Integer dangerDegree, PackageInfo dangerPackage, List<String> dangerPermissionList) {
+        this.dangerDegree = dangerDegree;
+        this.dangerPackage = dangerPackage;
+        this.dangerPermissionList = dangerPermissionList;
     }
 
-    public void setDangerDegreeList(List<Integer> dangerDegreeList) {
-        this.dangerDegreeList = dangerDegreeList;
+    public Integer getDangerDegree() {
+        return dangerDegree;
     }
 
-    public void setDangerPackageList(List<PackageInfo> dangerPackageList) {
-        this.dangerPackageList = dangerPackageList;
+    public void setDangerDegree(Integer dangerDegree) {
+        this.dangerDegree = dangerDegree;
     }
 
-    public List<Integer> getDangerDegreeList() {
-        return dangerDegreeList;
+    public PackageInfo getDangerPackage() {
+        return dangerPackage;
     }
 
-    public List<PackageInfo> getDangerPackageList() {
-        return dangerPackageList;
+    public void setDangerPackage(PackageInfo dangerPackage) {
+        this.dangerPackage = dangerPackage;
+    }
+
+    public List<String> getDangerPermissionList() {
+        return dangerPermissionList;
+    }
+
+    public void setDangerPermissionList(List<String> dangerPermissionList) {
+        this.dangerPermissionList = dangerPermissionList;
     }
 }
