@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.example.myvaccine2.App.AppData;
 
-import java.util.Date;
-
 public class ApkInfoActivity extends AppCompatActivity {
 
     TextView appLabel, packageName, version, features;
@@ -80,8 +78,7 @@ public class ApkInfoActivity extends AppCompatActivity {
 
         // uses-permission
         if (packageInfo.requestedPermissions != null)
-            permissions
-                    .setText(getPermissions(packageInfo.requestedPermissions));
+            permissions.setText(getPermissions(packageInfo.requestedPermissions));
         else
             permissions.setText("-");
     }
@@ -97,9 +94,12 @@ public class ApkInfoActivity extends AppCompatActivity {
     // Convert string array to comma separated string
     private String getPermissions(String[] requestedPermissions) {
         String permission = "";
-        for (int i = 0; i < requestedPermissions.length; i++) {
+        int size = requestedPermissions.length;
+        for (int i = 0; i < size - 1; i++) {
             permission = permission + requestedPermissions[i] + ",\n";
         }
+        permission = permission + requestedPermissions[size - 1];
+
         return permission;
     }
 

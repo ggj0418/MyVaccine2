@@ -4,14 +4,20 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_apk_list">AppList Demo</string>
     <string name="appicon">Application Icon</string>
-    <string name="apkname">Application Name:</string>
-    <string name="package_name">Package Name:</string>
-    <string name="version">Version:</string>
-    <string name="features">Required Features:</string>
-    <string name="permissions">Required Permissions:</string>
-    <string name="req_version">Taget SDK Version:</string>
-    <string name="path_info">Path Info:</string>
+    <string name="apkname">Application Name</string>
+    <string name="package_name">Package Name</string>
+    <string name="version">Version</string>
+    <string name="features">Required Features</string>
+    <string name="permissions">Required Permissions</string>
+    <string name="req_version">Taget SDK Version</string>
+    <string name="path_info">Path Info</string>
     <string name="appsize">Physical Size</string>
-    <string name="installed">Installed:</string>
-    <string name="modified">Last Modified:</string>
+    <string name="installed">Installed Date</string>
+    <string name="modified">Last Modified Date</string>
+
+    <string name="notice_title">Notice</string>
+    <string name="notice_subtitle_1">기능 1</string>
+    <string name="notice_subtitle_2">기능 2</string>
+    <string name="notice_1">위험한 권한을 지닌 어플리케이션 시각화</string>
+    <string name="notice_2">개인정보를 스니핑하는 어플리케이션 탐색 및 삭제</string>
 </resources>
