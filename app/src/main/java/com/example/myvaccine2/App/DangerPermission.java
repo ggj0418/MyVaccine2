@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 // 위험한 권한 리스트
 public class DangerPermission {
+    public static final int DANGER_PERMISSION_COUNT = 23;
     public static final ArrayList<String> criticalPermissionList = new ArrayList<>(
             Arrays.asList(
                     Manifest.permission.READ_CALENDAR,

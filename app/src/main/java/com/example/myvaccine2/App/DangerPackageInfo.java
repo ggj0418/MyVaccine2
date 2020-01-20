@@ -8,12 +8,10 @@ import java.util.List;
 public class DangerPackageInfo {
     public Integer dangerDegree;
     public PackageInfo dangerPackage;
-    public List<String> dangerPermissionList;
 
-    public DangerPackageInfo(Integer dangerDegree, PackageInfo dangerPackage, List<String> dangerPermissionList) {
+    public DangerPackageInfo(Integer dangerDegree, PackageInfo dangerPackage) {
         this.dangerDegree = dangerDegree;
         this.dangerPackage = dangerPackage;
-        this.dangerPermissionList = dangerPermissionList;
     }
 
     public Integer getDangerDegree() {
@@ -32,11 +30,4 @@ public class DangerPackageInfo {
         this.dangerPackage = dangerPackage;
     }
 
-    public List<String> getDangerPermissionList() {
-        return dangerPermissionList;
-    }
-
-    public void setDangerPermissionList(List<String> dangerPermissionList) {
-        this.dangerPermissionList = dangerPermissionList;
-    }
 }

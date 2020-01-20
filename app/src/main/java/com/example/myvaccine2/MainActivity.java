@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         funcImage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent toDangerApkListIntent = new Intent(MainActivity.this, DangerApkListActivity.class);
+                startActivity(toDangerApkListIntent);
             }
         });
         funcImage3 = (ImageView) findViewById(R.id.main_function3);
