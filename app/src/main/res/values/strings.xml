@@ -18,6 +18,9 @@
     <string name="notice_title">Notice</string>
     <string name="notice_subtitle_1">기능 1</string>
     <string name="notice_subtitle_2">기능 2</string>
-    <string name="notice_1">위험한 권한을 지닌 어플리케이션 시각화</string>
-    <string name="notice_2">개인정보를 스니핑하는 어플리케이션 탐색 및 삭제</string>
+    <string name="notice_subtitle_3">기능 3</string>
+    <string name="notice_1">디바이스에 설치된 어플리케이션 리스트 정보 확인</string>
+    <string name="notice_2">위험한 권한을 지닌 어플리케이션 목록 확인</string>
+    <string name="notice_3">개인정보를 스니핑하는 어플리케이션 탐색 및 삭제</string>
+    <string name="copyright">designed by flat-icons, srip and freepik from Flaticon</string>
 </resources>

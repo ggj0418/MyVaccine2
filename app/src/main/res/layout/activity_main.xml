@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#FFFFFF">
 
     <TextView
         android:gravity="center"
@@ -13,7 +14,9 @@
         android:layout_weight="1"
         android:text="@string/notice_title"
         android:textStyle="bold"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="15sp"/>
 
     <TextView
         android:gravity="center"
@@ -49,12 +52,140 @@
         android:text="@string/notice_2"
         android:textSize="12sp"/>
 
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/notice_subtitle_3"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/notice_3"
+        android:textSize="12sp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="10"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+
+            <ImageView
+                android:id="@+id/main_function1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:src="@drawable/ic_list"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/notice_subtitle_1"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+
+            <ImageView
+                android:id="@+id/main_function2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:src="@drawable/ic_warning"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/notice_subtitle_2"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+
+            <ImageView
+                android:id="@+id/main_function3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:src="@drawable/ic_theif"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/notice_subtitle_3"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
     </LinearLayout>
+
+    <TextView
+        android:layout_marginEnd="5sp"
+        android:gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="@string/copyright"
+        android:textSize="12sp"/>
 
 </LinearLayout>

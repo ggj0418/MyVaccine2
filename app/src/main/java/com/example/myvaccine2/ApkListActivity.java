@@ -26,8 +26,8 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
     Spinner spinner;
     ApkAdapter apkAdapter;
 
-    List<PackageInfo> packageList1;
     List<PackageInfo> packageList;
+    List<PackageInfo> packageListSort;
 
     private static final int SELECT_ALL = 0;
     private static final int SELECT_WITHOUT_SYSTEM = 1;
@@ -44,29 +44,32 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
+                    // 모든 패키지 선택 시, 디바이스에 있는 모든 패키지 출력
                     case SELECT_ALL:
-                        packageList1.clear();
-                        for (PackageInfo pi : packageList) {
-                            packageList1.add(pi);
+                        packageList.clear();
+                        for (PackageInfo pi : packageListSort) {
+                            packageList.add(pi);
                         }
                         apkAdapter.notifyDataSetChanged();
                         break;
+                    // 시스템 제외 패키지 선택 시, 시스템 어플리케이션을 제외한 패키지 출력
                     case SELECT_WITHOUT_SYSTEM:
-                        packageList1.clear();
-                        for (PackageInfo pi : packageList) {
+                        packageList.clear();
+                        for (PackageInfo pi : packageListSort) {
                             boolean b = isSystemPackage(pi);
                             if (!b) {
-                                packageList1.add(pi);
+                                packageList.add(pi);
                             }
                         }
                         apkAdapter.notifyDataSetChanged();
                         break;
+                    // 시스템 패키지만 선택 시, 시스템 어플리케이션에 해당하는 패키지 출력
                     case SELECT_ONLY_SYSTEM:
-                        packageList1.clear();
-                        for (PackageInfo pi : packageList) {
+                        packageList.clear();
+                        for (PackageInfo pi : packageListSort) {
                             boolean b = isSystemPackage(pi);
                             if (b) {
-                                packageList1.add(pi);
+                                packageList.add(pi);
                             }
                         }
                         apkAdapter.notifyDataSetChanged();
@@ -81,16 +84,19 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
 
             }
         });
+
+        // 권한을 얻는 PackageManager 초기화
         packageManager = getPackageManager();
-        packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+        packageListSort = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
 
-        packageList1 = new ArrayList<PackageInfo>();
+        packageList = new ArrayList<PackageInfo>();
 
-        for (PackageInfo pi : packageList) {
-            packageList1.add(pi);
+        // 초기에는 모든 패키지 출력
+        for (PackageInfo pi : packageListSort) {
+            packageList.add(pi);
         }
 
-        apkAdapter = new ApkAdapter(this, packageList1, packageManager);
+        apkAdapter = new ApkAdapter(this, packageList, packageManager);
         apkList = (ListView) findViewById(R.id.applist);
         apkList.setAdapter(apkAdapter);
 
