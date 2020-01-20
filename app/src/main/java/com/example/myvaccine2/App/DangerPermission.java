@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // 위험한 권한 리스트
-public class CriticalPermission {
+public class DangerPermission {
     public static final ArrayList<String> criticalPermissionList = new ArrayList<>(
             Arrays.asList(
                     Manifest.permission.READ_CALENDAR,
