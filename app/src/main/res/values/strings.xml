@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TK 백신</string>
+
+    // ApkListActivity 전용 텍스트
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_apk_list">AppList Demo</string>
@@ -15,6 +17,10 @@
     <string name="installed">Installed Date</string>
     <string name="modified">Last Modified Date</string>
 
+    // DangerApkListActivity 전용 텍스트
+    <string name="example">예시</string>
+    <string name="internet">인터넷 사용여부 :  </string>
+    // MainActivity 전용 텍스트
     <string name="notice_title">Notice</string>
     <string name="notice_subtitle_1">기능 1</string>
     <string name="notice_subtitle_2">기능 2</string>
