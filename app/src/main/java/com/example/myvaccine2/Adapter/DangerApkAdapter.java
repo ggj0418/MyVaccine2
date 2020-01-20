@@ -77,6 +77,7 @@ public class DangerApkAdapter extends BaseAdapter {
         // 인덱스로부터 DangerPackageInfo 객체 캐스팅
         DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) getItem(position);
 
+        // 리스트뷰에 넣을 객체 필드 초기화
         int dangerDegree = dangerPackageInfo.getDangerDegree();
         PackageInfo packageInfo = dangerPackageInfo.getDangerPackage();
         boolean internetBool = dangerPackageInfo.getInternetBool();
@@ -92,14 +93,17 @@ public class DangerApkAdapter extends BaseAdapter {
         Drawable appIcon = packageManager.getApplicationIcon(packageInfo.applicationInfo);
         String appname = packageManager.getApplicationLabel(packageInfo.applicationInfo).toString();
 
+        // 위험한 퍼미션 사용 개수에 따라 달라지는 아이콘 선언
         Drawable warning_red = ResourcesCompat.getDrawable(res, R.drawable.ic_mark_red, null);
         Drawable warning_yellow = ResourcesCompat.getDrawable(res, R.drawable.ic_mark_yellow, null);
         Drawable warning_green = ResourcesCompat.getDrawable(res, R.drawable.ic_mark_green, null);
 
+        // 리스트뷰 아이템 값 설정
         holder.apkName.setText(appname);
         holder.internetBool.setText(internet);
         holder.apkIcon.setImageDrawable(appIcon);
 
+        // 위험한 퍼미션 사용 개수에 따라 각기 다른 아이콘 설정
         if(dangerDegree <= 23 && dangerDegree > 15)
             holder.dangerIcon.setImageDrawable(warning_red);
         else if(dangerDegree <= 15 && dangerDegree > 7)

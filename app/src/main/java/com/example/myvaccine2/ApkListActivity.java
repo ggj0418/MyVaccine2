@@ -96,6 +96,7 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
             packageListSort.add(pi);
         }
 
+        // 어뎁터 설정
         apkAdapter = new ApkAdapter(this, packageListSort, packageManager);
         apkList = (ListView) findViewById(R.id.applist);
         apkList.setAdapter(apkAdapter);

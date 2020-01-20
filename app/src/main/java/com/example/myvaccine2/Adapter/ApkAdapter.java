@@ -20,8 +20,7 @@ public class ApkAdapter extends BaseAdapter {
     Activity context;
     PackageManager packageManager;
 
-    public ApkAdapter(Activity context, List<PackageInfo> packageList,
-                      PackageManager packageManager) {
+    public ApkAdapter(Activity context, List<PackageInfo> packageList, PackageManager packageManager) {
         super();
         this.context = context;
         this.packageList = packageList;
@@ -63,10 +62,10 @@ public class ApkAdapter extends BaseAdapter {
         }
 
         PackageInfo packageInfo = (PackageInfo) getItem(position);
-        Drawable appIcon = packageManager
-                .getApplicationIcon(packageInfo.applicationInfo);
-        String appName = packageManager.getApplicationLabel(
-                packageInfo.applicationInfo).toString();
+        Drawable appIcon = packageManager.getApplicationIcon(packageInfo.applicationInfo);
+        String appName = packageManager.getApplicationLabel(packageInfo.applicationInfo).toString();
+
+        // 리스트뷰 아이템 값 할당
         appIcon.setBounds(0, 0, 160, 160);
         holder.apkName.setCompoundDrawables(appIcon, null, null, null);
         holder.apkName.setCompoundDrawablePadding(20);

@@ -47,36 +47,34 @@ public class ApkInfoActivity extends AppCompatActivity {
     }
 
     private void setValues() {
-        // APP name
-        appLabel.setText(getPackageManager().getApplicationLabel(
-                packageInfo.applicationInfo));
+        // PackageManager에서 불러온 어플리케이션 이름 초기화
+        appLabel.setText(getPackageManager().getApplicationLabel(packageInfo.applicationInfo));
 
-        // package name
+        // PackageInfo에서 불러온 패키지 이름 초기화
         packageName.setText(packageInfo.packageName);
 
-        // version name
+        // PackageInfo에서 불러온 버전명 초기화
         version.setText(packageInfo.versionName);
 
-        // target version
-        andVersion.setText(Integer
-                .toString(packageInfo.applicationInfo.targetSdkVersion));
+        // PackageInfo에서 불러온 타겟 SDK 버전 초기화
+        andVersion.setText(Integer.toString(packageInfo.applicationInfo.targetSdkVersion));
 
-        // path
+        // PackageInfo에서 불러온 패키지 경로 초기화
         path.setText(packageInfo.applicationInfo.sourceDir);
 
-        // first installation
+        // PackageInfo에서 불러온 패키지 초기 설치 날짜 초기화
         installed.setText(setDateFormat(packageInfo.firstInstallTime));
 
-        // last modified
+        // PackageInfo에서 불러온 패키지 가장 최근 업데이트 날짜 초기화
         lastModify.setText(setDateFormat(packageInfo.lastUpdateTime));
 
-        // features
+        // PackageInfo에서 불러온 패키지 특징 초기화
         if (packageInfo.reqFeatures != null)
             features.setText(getFeatures(packageInfo.reqFeatures));
         else
             features.setText("-");
 
-        // uses-permission
+        // PackageInfo에서 불러온 패키지 퍼미션 초기화
         if (packageInfo.requestedPermissions != null)
             permissions.setText(getPermissions(packageInfo.requestedPermissions));
         else
@@ -91,7 +89,7 @@ public class ApkInfoActivity extends AppCompatActivity {
         return strDate;
     }
 
-    // Convert string array to comma separated string
+    // PackageInfo에서 불러온 패키지 퍼미션들을 ',' 으로 구분자 삼아서 하나의 String 객체에 저장
     private String getPermissions(String[] requestedPermissions) {
         String permission = "";
         int size = requestedPermissions.length;
@@ -103,7 +101,7 @@ public class ApkInfoActivity extends AppCompatActivity {
         return permission;
     }
 
-    // Convert string array to comma separated string
+    // PackageInfo에서 불러온 패키지 특징들을 ',' 으로 구분자 삼아서 하나의 String 객체에 저장
     private String getFeatures(FeatureInfo[] reqFeatures) {
         String features = "";
         for (int i = 0; i < reqFeatures.length; i++) {
