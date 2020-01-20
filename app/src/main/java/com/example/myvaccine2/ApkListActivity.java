@@ -46,30 +46,30 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
                 switch (position) {
                     // 모든 패키지 선택 시, 디바이스에 있는 모든 패키지 출력
                     case SELECT_ALL:
-                        packageList.clear();
-                        for (PackageInfo pi : packageListSort) {
-                            packageList.add(pi);
+                        packageListSort.clear();
+                        for (PackageInfo pi : packageList) {
+                            packageListSort.add(pi);
                         }
                         apkAdapter.notifyDataSetChanged();
                         break;
                     // 시스템 제외 패키지 선택 시, 시스템 어플리케이션을 제외한 패키지 출력
                     case SELECT_WITHOUT_SYSTEM:
-                        packageList.clear();
-                        for (PackageInfo pi : packageListSort) {
+                        packageListSort.clear();
+                        for (PackageInfo pi : packageList) {
                             boolean b = isSystemPackage(pi);
                             if (!b) {
-                                packageList.add(pi);
+                                packageListSort.add(pi);
                             }
                         }
                         apkAdapter.notifyDataSetChanged();
                         break;
                     // 시스템 패키지만 선택 시, 시스템 어플리케이션에 해당하는 패키지 출력
                     case SELECT_ONLY_SYSTEM:
-                        packageList.clear();
-                        for (PackageInfo pi : packageListSort) {
+                        packageListSort.clear();
+                        for (PackageInfo pi : packageList) {
                             boolean b = isSystemPackage(pi);
                             if (b) {
-                                packageList.add(pi);
+                                packageListSort.add(pi);
                             }
                         }
                         apkAdapter.notifyDataSetChanged();
@@ -85,18 +85,18 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
             }
         });
 
-        // 권한을 얻는 PackageManager 초기화
+        // 권한에 대한 정보를 받아오는 PackageManger를 통해 설치된 패키지들을 불러옴
         packageManager = getPackageManager();
-        packageListSort = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+        packageList = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
 
-        packageList = new ArrayList<PackageInfo>();
+        packageListSort = new ArrayList<PackageInfo>();
 
         // 초기에는 모든 패키지 출력
-        for (PackageInfo pi : packageListSort) {
-            packageList.add(pi);
+        for (PackageInfo pi : packageList) {
+            packageListSort.add(pi);
         }
 
-        apkAdapter = new ApkAdapter(this, packageList, packageManager);
+        apkAdapter = new ApkAdapter(this, packageListSort, packageManager);
         apkList = (ListView) findViewById(R.id.applist);
         apkList.setAdapter(apkAdapter);
 
