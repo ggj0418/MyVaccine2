@@ -115,14 +115,5 @@ public class DangerApkListActivity extends AppCompatActivity {
 
             }
         });
-
-        for (int i = 0; i < dangerPackageInfoListCopy.size(); i++) {
-            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoListCopy.get(i);
-            if (dangerPackageInfo.getDangerDegree() <= 23 && dangerPackageInfo.getDangerDegree() > 15) {
-                dangerPackageInfoList.add(dangerPackageInfo);
-            }
-        }
-
-        dangerApkAdapter.notifyDataSetChanged();
     }
 }
