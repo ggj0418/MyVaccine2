@@ -10,6 +10,9 @@
         // 타이틀바 없애기
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        // 이미지 클릭 이벤트 색상 정의
+        <item name="colorControlHighlight">#FFFF40</item>
     </style>
 
 </resources>
