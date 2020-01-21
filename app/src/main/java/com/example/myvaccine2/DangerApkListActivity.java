@@ -48,7 +48,5 @@ public class DangerApkListActivity extends AppCompatActivity {
         dangerApkAdapter = new DangerApkAdapter(dangerPackageInfoList, this, packageManager, res);
         dangerApkListView = (ListView) findViewById(R.id.dangerapplist);
         dangerApkListView.setAdapter(dangerApkAdapter);
-
-        dangerApkAdapter.notifyDataSetChanged();
     }
 }

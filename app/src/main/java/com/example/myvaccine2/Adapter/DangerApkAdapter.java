@@ -110,6 +110,8 @@ public class DangerApkAdapter extends BaseAdapter {
             holder.dangerIcon.setImageDrawable(warning_yellow);
         else if(dangerDegree <= 7 && dangerDegree > 0)
             holder.dangerIcon.setImageDrawable(warning_green);
+        else    // 이 else 구문이 없으니 dangerDegree가 0인 값들은 warning red, yellow, green중에 랜덤한 값으로 출력되고 스크롤 때마다 값이 바뀌는 오류가 발생
+            holder.dangerIcon.setImageDrawable(null);
 
         return convertView;
     }
