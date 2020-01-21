@@ -19,6 +19,7 @@ import com.example.myvaccine2.App.AppData;
 import java.util.ArrayList;
 import java.util.List;
 
+// 사용자 디바이스에 존재하는 패키지들을 리스트로 표시해주고, Spinner를 통해 조건별로 리스트를 구분해주는 액티비티
 public class ApkListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     PackageManager packageManager;

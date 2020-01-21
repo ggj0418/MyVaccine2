@@ -20,6 +20,8 @@ import com.example.myvaccine2.App.DangerPackageMethod;
 import java.util.ArrayList;
 import java.util.List;
 
+// 전체 패키지 리스트에서 퍼미션에 의거한 위험도를 판단한 후, 이를 시각화해서 보여주는 액티비티
+// Spinner를 이용하여 위험도로 리스트를 구분 가능
 public class DangerApkListActivity extends AppCompatActivity {
 
     Resources res;

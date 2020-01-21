@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.myvaccine2.App.AppData;
 
+// ApkListActivity에서 클릭한 패키지 정보를 표시하는 액티비티
 public class ApkInfoActivity extends AppCompatActivity {
 
     TextView appLabel, packageName, version, features;
