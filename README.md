@@ -9,10 +9,22 @@
 3. 설치된 스파이웨어 확인 및 삭제
 
 ### 1. 메인 액티비티
-![KakaoTalk_20200121_103445435](https://user-images.githubusercontent.com/44552228/72768203-f0dc6700-3c39-11ea-86fc-4ece7c64f576.png)
-![KakaoTalk_20200121_103445435_01](https://user-images.githubusercontent.com/44552228/72768204-f0dc6700-3c39-11ea-8dda-a6b978add2f6.png)
-![KakaoTalk_20200121_103445435_02](https://user-images.githubusercontent.com/44552228/72768206-f174fd80-3c39-11ea-90e4-544ffa4baa27.png)
-![KakaoTalk_20200121_103445435_03](https://user-images.githubusercontent.com/44552228/72768207-f174fd80-3c39-11ea-9df7-07f4393cccff.png)
-![KakaoTalk_20200121_103445435_04](https://user-images.githubusercontent.com/44552228/72768208-f174fd80-3c39-11ea-979b-301841222899.png)
-![KakaoTalk_20200121_103445435_05](https://user-images.githubusercontent.com/44552228/72768209-f174fd80-3c39-11ea-8d5c-377520edddf9.png)
-![KakaoTalk_20200121_103445435_06](https://user-images.githubusercontent.com/44552228/72768210-f20d9400-3c39-11ea-8bad-557e8c929036.png)
+![초기화면](https://user-images.githubusercontent.com/44552228/72768429-c7700b00-3c3a-11ea-8885-ba62c5c2d6db.png)
+
+### 2. 기능 1 : 어플 리스트 화면(전체)
+![어플 리스트 화면(전체)](https://user-images.githubusercontent.com/44552228/72768424-c6d77480-3c3a-11ea-9e3c-60425bb1d731.png)
+
+### 3. 기능 1 : 어플 리스트 화면(시스템)
+![어플 리스트 화면(시스템)](https://user-images.githubusercontent.com/44552228/72768430-c7700b00-3c3a-11ea-9fbb-036d5401620e.png)
+
+### 4. 기능 1 : 어플 상세 정보 화면
+![어플 상세 정보 화면](https://user-images.githubusercontent.com/44552228/72768426-c6d77480-3c3a-11ea-9c3b-5d7ada6c892b.png)
+
+### 5. 기능 2 : 어플 위험도 리스트 화면(전체)
+![어플 위험도 리스트 화면](https://user-images.githubusercontent.com/44552228/72768428-c7700b00-3c3a-11ea-9b56-c4e2a9149ed7.png)
+
+### 6. 기능2 : 어플 위험도 리스트 화면(위험)
+![어플 위험도 리스트 화면(위험)](https://user-images.githubusercontent.com/44552228/72768427-c7700b00-3c3a-11ea-9c09-7b909617f58b.png)
+
+
+
