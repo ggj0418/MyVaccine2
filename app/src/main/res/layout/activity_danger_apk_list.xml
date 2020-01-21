@@ -7,9 +7,19 @@
     android:background="#FFFFFF"
     tools:context=".DangerApkListActivity">
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:entries="@array/Classification_Danger"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </Spinner>
+
     <ListView
         android:id="@+id/dangerapplist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="20"/>
 
 </LinearLayout>

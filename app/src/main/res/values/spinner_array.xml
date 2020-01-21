@@ -5,4 +5,11 @@
         <item>시스템 패키지 제외하고 표시</item>
         <item>시스템 패키지만 표시</item>
     </string-array>
+
+    <string-array name="Classification_Danger">
+        <item>모든 패키지</item>
+        <item>위험(RED) 패키지만 표시</item>
+        <item>주의(YELLOW) 패키지만 표시</item>
+        <item>안전(GREEN) 패키지만 표시</item>
+    </string-array>
 </resources>
