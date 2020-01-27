@@ -1,8 +1,12 @@
 package com.example.myvaccine2.API;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.annotation.MainThread;
+
 import com.example.myvaccine2.DTO.BeaconInfo;
+import com.example.myvaccine2.VaccineReadyActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// REST API CALL 함수 및 응답값 파싱 함수
+// REST API CALL 함수 및 응답값 파싱 함수(비동기)
 public class APICallMethod {
     private static APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     private static HashMap<String, String> body = new HashMap<String, String>();
@@ -49,30 +53,40 @@ public class APICallMethod {
 
     // DB에서 웹 비콘 정보 획득
     public static List<String> getBeaconInfo() {
-        // 리턴해줄 List 선언
-        final List<String> resultList = new ArrayList<String>();
-        // 선언해둔 getBeaconInfo 메서드 콜백 선언
-        Call<List<BeaconInfo>> getBeaconInfoCall = apiInterface.getBeaconInfo();
-        getBeaconInfoCall.enqueue(new Callback<List<BeaconInfo>>() {
-            @Override
-            public void onResponse(Call<List<BeaconInfo>> call, Response<List<BeaconInfo>> response) {
-                ArrayList<BeaconInfo> list = (ArrayList<BeaconInfo>) response.body();
-                // 로그 파싱에 쓰일 비콘 이름 획득
-                if(list != null) {
-                    for(int i=0;i<list.size();i++) {
-                        BeaconInfo beaconInfo = list.get(i);
-                        resultList.add(beaconInfo.getFileName());
-                    }
-                } else {
-                    resultList.add("None");
-                }
-            }
+        // 최종 반환 리스트 초기화
+        List<String> resultList = new ArrayList<>();
+        final Call<List<BeaconInfo>> beaconInfoCall = apiInterface.getBeaconInfo();
+        try {
+            // 동기적으로 서버 응답값을 처리하기 위해 AysncTask 안에서 응답값 처리
+            resultList = new AsyncTask<Void, Void, List<String>>() {
+                @Override
+                protected List<String> doInBackground(Void... voids) {
+                    List<String> stringList = new ArrayList<String>();
+                    List<BeaconInfo> list;
 
-            @Override
-            public void onFailure(Call<List<BeaconInfo>> call, Throwable t) {
-                Log.e("getBeaconInfoCall", "Fail", t);
-            }
-        });
+                    try {
+                        // retrofit call을 동기적 실행
+                        list = beaconInfoCall.execute().body();
+
+                        if(list != null) {
+                            for(int i=0;i<list.size();i++) {
+                                BeaconInfo beaconInfo = list.get(i);
+                                stringList.add(beaconInfo.getFileName());
+                            }
+                        } else {
+                            stringList.add("None");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    // resultList에 반환값 전달
+                    return stringList;
+                }
+            }.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return resultList;
     }

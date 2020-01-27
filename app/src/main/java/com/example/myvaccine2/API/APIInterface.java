@@ -20,6 +20,6 @@ public interface APIInterface {
 
     // DB로부터 웹 비콘 관련 정보를 받는 API
     @Headers("Content-Type: application/json")
-    @GET("opensource/getBeaconInfo")
+    @GET("opensource/beaconInfo")
     Call<List<BeaconInfo>> getBeaconInfo();
 }
