@@ -1,7 +1,8 @@
 package com.example.myvaccine2.API;
 
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.myvaccine2.DTO.BeaconInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;

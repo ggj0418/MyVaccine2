@@ -1,5 +1,7 @@
 package com.example.myvaccine2.API;
 
+import com.example.myvaccine2.DTO.BeaconInfo;
+
 import java.util.HashMap;
 import java.util.List;
 

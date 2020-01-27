@@ -1,4 +1,4 @@
-package com.example.myvaccine2.API;
+package com.example.myvaccine2.DTO;
 
 import com.google.gson.annotations.SerializedName;
 
