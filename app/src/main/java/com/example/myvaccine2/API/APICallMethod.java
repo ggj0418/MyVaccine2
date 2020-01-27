@@ -1,9 +1,12 @@
 package com.example.myvaccine2.API;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -18,6 +21,7 @@ public class APICallMethod {
     // 접속로그에서 비콘에 관련된 로그 추출
     public static void findFromLog(String sms, String call, String phone) {
         // BODY 초기화
+        body.clear();
         body.put("SMS", sms);
         body.put("CALL", call);
         body.put("PHONE", phone);
@@ -37,8 +41,36 @@ public class APICallMethod {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.e("findFromLogCall", "Fail", t);
             }
         });
+    }
+
+    // DB에서 웹 비콘 정보 획득
+    public static List<String> getBeaconInfo() {
+        // 리턴해줄 List 선언
+        final List<String> resultList = new ArrayList<String>();
+        // 선언해둔 getBeaconInfo 메서드 콜백 선언
+        Call<List<BeaconInfo>> getBeaconInfoCall = apiInterface.getBeaconInfo();
+        getBeaconInfoCall.enqueue(new Callback<List<BeaconInfo>>() {
+            @Override
+            public void onResponse(Call<List<BeaconInfo>> call, Response<List<BeaconInfo>> response) {
+                ArrayList<BeaconInfo> list = (ArrayList<BeaconInfo>) response.body();
+                // 로그 파싱에 쓰일 비콘 이름 획득
+                if(list != null) {
+                    for(int i=0;i<list.size();i++) {
+                        BeaconInfo beaconInfo = list.get(i);
+                        resultList.add(beaconInfo.getFileName());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BeaconInfo>> call, Throwable t) {
+                Log.e("getBeaconInfoCall", "Fail", t);
+            }
+        });
+
+        return resultList;
     }
 }

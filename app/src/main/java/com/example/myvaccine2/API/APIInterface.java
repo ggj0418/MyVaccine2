@@ -1,6 +1,7 @@
 package com.example.myvaccine2.API;
 
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -17,6 +18,6 @@ public interface APIInterface {
 
     // DB로부터 웹 비콘 관련 정보를 받는 API
     @Headers("Content-Type: application/json")
-    @GET("opensource/getWebbecon")
-    Call<ResponseBody> getWebbecon();
+    @GET("opensource/getBeaconInfo")
+    Call<List<BeaconInfo>> getBeaconInfo();
 }
