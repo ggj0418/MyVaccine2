@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         funcImage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent toVaccineReadyIntent = new Intent(MainActivity.this, VaccineReadyActivity.class);
+                startActivity(toVaccineReadyIntent);
             }
         });
     }

@@ -5,6 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// REST API의 endPoint 기본 설정
 public class APIClient {
     private static Retrofit retrofit = null;
     public static Retrofit getClient() {
