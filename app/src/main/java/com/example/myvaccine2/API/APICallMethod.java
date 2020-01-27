@@ -17,10 +17,12 @@ public class APICallMethod {
 
     // 접속로그에서 비콘에 관련된 로그 추출
     public static void findFromLog(String sms, String call, String phone) {
+        // BODY 초기화
         body.put("SMS", sms);
         body.put("CALL", call);
         body.put("PHONE", phone);
 
+        // 선언해둔 findFromLog 메서드에 BODY 전달
         Call<ResponseBody> findFromLogCall = apiInterface.findFromLog(body);
         findFromLogCall.enqueue(new Callback<ResponseBody>() {
             @Override
