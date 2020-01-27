@@ -63,6 +63,8 @@ public class APICallMethod {
                         BeaconInfo beaconInfo = list.get(i);
                         resultList.add(beaconInfo.getFileName());
                     }
+                } else {
+                    resultList.add("None");
                 }
             }
 
