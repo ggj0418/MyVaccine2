@@ -15,6 +15,7 @@ public class APICallMethod {
     private static APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     private static HashMap<String, String> body = new HashMap<String, String>();
 
+    // 접속로그에서 비콘에 관련된 로그 추출
     public static void findFromLog(String sms, String call, String phone) {
         body.put("SMS", sms);
         body.put("CALL", call);
