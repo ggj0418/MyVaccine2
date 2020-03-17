@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
     }
 
-    // Activity위에 다른 Activity가 올라와서 focus를 잃었을 때 호출되는 함수.
+    // Activity위에 다른 Activity가 올라와서 focus를 잃었을 때 호출되는 함수. (startActivity로 다른 액티비티 실행시 시작되는 함수)
     @Override
     protected void onPause() {
         super.onPause();
