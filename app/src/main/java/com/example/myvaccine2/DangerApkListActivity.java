@@ -31,8 +31,8 @@ public class DangerApkListActivity extends AppCompatActivity {
     DangerApkAdapter dangerApkAdapter;
 
     List<PackageInfo> packageList;
-    List<DangerPackageInfo> dangerPackageInfoList = new ArrayList<DangerPackageInfo>();
-    List<DangerPackageInfo> dangerPackageInfoListCopy = new ArrayList<DangerPackageInfo>();
+    List<DangerPackageInfo> dangerPackageInfoList;
+    List<DangerPackageInfo> dangerPackageInfoListCopy;
 
     private static final int SELECT_ALL = 0;
     private static final int SELECT_RED = 1;
@@ -47,8 +47,13 @@ public class DangerApkListActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onStart() {
         initSetting();
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
         super.onResume();
     }
 
@@ -62,8 +67,8 @@ public class DangerApkListActivity extends AppCompatActivity {
         dangerApkAdapter = null;
 
         packageList = null;
-        dangerPackageInfoList.clear();
-        dangerPackageInfoListCopy.clear();
+        dangerPackageInfoList = null;
+        dangerPackageInfoListCopy = null;
 
         super.onStop();
     }
@@ -71,6 +76,8 @@ public class DangerApkListActivity extends AppCompatActivity {
     private void initSetting() {
         // Drawable 사용을 위한 리소스 선언
         res = getResources();
+        // onStop에서 해제 이후 재선언을 위한 코드
+        dangerPackageInfoListCopy = new ArrayList<DangerPackageInfo>();
 
         // 퍼미션 정보 열람 목적으로 설치된 패키지 불러오기
         packageManager = getPackageManager();

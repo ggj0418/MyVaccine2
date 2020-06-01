@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
     // Activity가 다시 시작되기 전에 호출, Actvitiy가 멈춘 후 호출되는 함수, Activity가 사용자에게 보여지기 직전에 호출되는 함수
     @Override
     protected void onStart() {
+        findViewByIdInit();
         super.onStart();
     }
 
     // Activity가 비로소 화면에 보여지는 단계, 사용자에게 Focus를 잡은 상태
     @Override
     protected void onResume() {
-        findViewByIdInit();
         super.onResume();
     }
 

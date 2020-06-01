@@ -59,12 +59,49 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
     // Activity가 다시 시작되기 전에 호출, Actvitiy가 멈춘 후 호출되는 함수, Activity가 사용자에게 보여지기 직전에 호출되는 함수
     @Override
     protected void onStart() {
+        initSetting();
         super.onStart();
     }
 
     // Activity가 비로소 화면에 보여지는 단계, 사용자에게 Focus를 잡은 상태
     @Override
     protected void onResume() {
+        super.onResume();
+    }
+
+    // Activity가 멈춰있다가 다시 호출될 때 불리는 함수, 즉 Stopped상태였을 때 다시 호출되어 시작될 때 불린다.
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    // Activity위에 다른 Activity가 올라와서 focus를 잃었을 때 호출되는 함수. (startActivity로 다른 액티비티 실행시 시작되는 함수)
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    // Activity위에 다른 Activity가 완전히 올라와 화면에서 100% 가려질 때 호출되는 함수
+    @Override
+    protected void onStop() {
+        packageManager = null;
+        apkList = null;
+        spinner = null;
+        apkAdapter = null;
+
+        packageList = null;
+        packageListSort = null;
+
+        super.onStop();
+    }
+
+    // Activity가 완전히 스택에서 없어질 때 호출되는 함수
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    private void initSetting() {
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -128,39 +165,5 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
         apkList.setAdapter(apkAdapter);
 
         apkList.setOnItemClickListener(this);
-        super.onResume();
-    }
-
-    // Activity가 멈춰있다가 다시 호출될 때 불리는 함수, 즉 Stopped상태였을 때 다시 호출되어 시작될 때 불린다.
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    // Activity위에 다른 Activity가 올라와서 focus를 잃었을 때 호출되는 함수. (startActivity로 다른 액티비티 실행시 시작되는 함수)
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    // Activity위에 다른 Activity가 완전히 올라와 화면에서 100% 가려질 때 호출되는 함수
-    @Override
-    protected void onStop() {
-        packageManager = null;
-        apkList = null;
-        spinner = null;
-        apkAdapter = null;
-
-        packageList = null;
-        packageListSort = null;
-
-        super.onStop();
-
-    }
-
-    // Activity가 완전히 스택에서 없어질 때 호출되는 함수
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
