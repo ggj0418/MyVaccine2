@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Activity가 다시 시작되기 전에 호출, Actvitiy가 멈춘 후 호출되는 함수, Activity가 사용자에게 보여지기 직전에 호출되는 함수
+    // 여기서 UI의 기본틀을 띄워놓고 세세한 정보들은 Resume에서 ProgressDialog 형식으로 처리하는 것이 좋을 것 같음
     @Override
     protected void onStart() {
         findViewByIdInit();
