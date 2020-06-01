@@ -39,7 +39,32 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_apk_list);
+    }
 
+    private boolean isSystemPackage(PackageInfo pkgInfo) {
+        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? true : false;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        PackageInfo packageInfo = (PackageInfo) parent
+                .getItemAtPosition(position);
+        AppData appData = (AppData) getApplicationContext();
+        appData.setPackageInfo(packageInfo);
+
+        Intent appInfo = new Intent(getApplicationContext(), ApkInfoActivity.class);
+        startActivity(appInfo);
+    }
+
+    // Activity가 다시 시작되기 전에 호출, Actvitiy가 멈춘 후 호출되는 함수, Activity가 사용자에게 보여지기 직전에 호출되는 함수
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    // Activity가 비로소 화면에 보여지는 단계, 사용자에게 Focus를 잡은 상태
+    @Override
+    protected void onResume() {
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -103,32 +128,6 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
         apkList.setAdapter(apkAdapter);
 
         apkList.setOnItemClickListener(this);
-    }
-
-    private boolean isSystemPackage(PackageInfo pkgInfo) {
-        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? true : false;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        PackageInfo packageInfo = (PackageInfo) parent
-                .getItemAtPosition(position);
-        AppData appData = (AppData) getApplicationContext();
-        appData.setPackageInfo(packageInfo);
-
-        Intent appInfo = new Intent(getApplicationContext(), ApkInfoActivity.class);
-        startActivity(appInfo);
-    }
-
-    // Activity가 다시 시작되기 전에 호출, Actvitiy가 멈춘 후 호출되는 함수, Activity가 사용자에게 보여지기 직전에 호출되는 함수
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    // Activity가 비로소 화면에 보여지는 단계, 사용자에게 Focus를 잡은 상태
-    @Override
-    protected void onResume() {
         super.onResume();
     }
 
@@ -147,7 +146,16 @@ public class ApkListActivity extends AppCompatActivity implements AdapterView.On
     // Activity위에 다른 Activity가 완전히 올라와 화면에서 100% 가려질 때 호출되는 함수
     @Override
     protected void onStop() {
+        packageManager = null;
+        apkList = null;
+        spinner = null;
+        apkAdapter = null;
+
+        packageList = null;
+        packageListSort = null;
+
         super.onStop();
+
     }
 
     // Activity가 완전히 스택에서 없어질 때 호출되는 함수

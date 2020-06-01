@@ -20,19 +20,13 @@ public class ApkInfoActivity extends AppCompatActivity {
     TextView appLabel, packageName, version, features;
     TextView permissions, andVersion, installed, lastModify, path;
     PackageInfo packageInfo;
+    AppData appData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_apk_info);
-
-        findViewsById();
-
-        AppData appData = (AppData) getApplicationContext();
-        packageInfo = appData.getPackageInfo();
-
-        setValues();
     }
 
     private void findViewsById() {
@@ -109,5 +103,25 @@ public class ApkInfoActivity extends AppCompatActivity {
             features = features + reqFeatures[i] + ",\n";
         }
         return features;
+    }
+
+    @Override
+    protected void onResume() {
+        findViewsById();
+
+        appData = (AppData) getApplicationContext();
+        packageInfo = appData.getPackageInfo();
+
+        setValues();
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        packageInfo = null;
+        appData = null;
+
+        super.onStop();
     }
 }
