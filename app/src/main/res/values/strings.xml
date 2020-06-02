@@ -20,6 +20,7 @@
     // DangerApkListActivity 전용 텍스트
     <string name="example">예시</string>
     <string name="internet">인터넷 사용여부 :  </string>
+
     // MainActivity 전용 텍스트
     <string name="notice_title">Notice</string>
     <string name="notice_subtitle_1">기능 1</string>
@@ -29,4 +30,10 @@
     <string name="notice_2">위험한 권한을 지닌 어플리케이션 목록 확인</string>
     <string name="notice_3">개인정보를 스니핑하는 어플리케이션 탐색 및 삭제</string>
     <string name="copyright">designed by flat-icons, srip and freepik from Flaticon</string>
+
+    // VaccineReadyActivity 전용 텍스트
+    <string name="sms_progress">문자</string>
+    <string name="call_progress">통화기록</string>
+    <string name="contact_progress">주소록</string>
+    <string name="vra_start_button">비콘 삽입 시작</string>
 </resources>
