@@ -34,35 +34,6 @@ public class Method {
         PendingIntent sentIntent = PendingIntent.getBroadcast(context, 0, new Intent("SMS_SENT_ACTION"), 0);
         PendingIntent deliveredIntent = PendingIntent.getBroadcast(context, 0, new Intent("SMS_DELIVERED_ACTION"), 0);
 
-        // SMS case 처리
-//        context.registerReceiver(new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                switch (getResultCode()) {
-//                    case Activity.RESULT_OK:
-//                        // 전송 성공
-//                        Toast.makeText(context, "전송 완료", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-//                        // 전송 실패
-//                        Toast.makeText(context, "전송 실패", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case SmsManager.RESULT_ERROR_NO_SERVICE:
-//                        // 서비스 지역 아님
-//                        Toast.makeText(context, "서비스 지역이 아닙니다", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case SmsManager.RESULT_ERROR_RADIO_OFF:
-//                        // 무선 꺼짐
-//                        Toast.makeText(context, "무선(Radio)가 꺼져있습니다", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case SmsManager.RESULT_ERROR_NULL_PDU:
-//                        // PDU 실패
-//                        Toast.makeText(context, "PDU Null", Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
-//            }
-//        }, new IntentFilter("SMS_SENT_ACTION"));
-
         // 서버로부터 비콘을 제대로 수신하지 못한 경우
         if (smsText == null) {
             Toast.makeText(context, "비콘이 제대로 수신되지 않았습니다", Toast.LENGTH_SHORT).show();
