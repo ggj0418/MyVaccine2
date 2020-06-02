@@ -80,8 +80,7 @@ public class ApkInfoActivity extends AppCompatActivity {
     private String setDateFormat(long time) {
         Date date = new Date(time);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String strDate = formatter.format(date);
-        return strDate;
+        return formatter.format(date);
     }
 
     // PackageInfo에서 불러온 패키지 퍼미션들을 ',' 으로 구분자 삼아서 하나의 String 객체에 저장

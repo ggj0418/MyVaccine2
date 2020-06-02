@@ -162,8 +162,6 @@ public class Method {
             }
         }
 
-        String email = buf.toString() + "@gmail.com";
-
-        return email;
+        return buf.toString() + "@gmail.com";
     }
 }

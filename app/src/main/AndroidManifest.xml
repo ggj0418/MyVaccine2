@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VaccineReadyActivity"></activity>
+        <activity android:name=".VaccineReadyActivity"/>
         <activity android:name=".DangerApkListActivity" />
         <activity android:name=".ApkListActivity" />
         <activity android:name=".ApkInfoActivity" />
