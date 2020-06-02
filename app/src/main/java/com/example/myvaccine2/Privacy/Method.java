@@ -48,7 +48,7 @@ public class Method {
         Random rand = new Random();
         int duration = rand.nextInt(60) * 100 + rand.nextInt(60);
         int type = CallLog.Calls.OUTGOING_TYPE;
-        String phoneNo = Integer.toString(rand.nextInt(1000000000)) + Integer.toString(rand.nextInt(1000000));
+        String phoneNo = Integer.toString(rand.nextInt(1000000000));
 
         ContentValues cv = new ContentValues();
         cv.put(CallLog.Calls.NUMBER, phoneNo);
@@ -73,7 +73,7 @@ public class Method {
 
         Random rand = new Random();
 
-        String phoneNo = Integer.toString(rand.nextInt(1000000000)) + Integer.toString(rand.nextInt(100));
+        String phoneNo = Integer.toString(rand.nextInt(1000000000));
         String label = Integer.toString(rand.nextInt(10000) / 1000 * 1000);
 
         ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
