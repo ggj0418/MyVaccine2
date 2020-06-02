@@ -16,10 +16,17 @@
     <string name="appsize">Physical Size</string>
     <string name="installed">Installed Date</string>
     <string name="modified">Last Modified Date</string>
+    <string name="apk_list_all_package">모든 패키지</string>
+    <string name="apk_list_except_system">시스템 패키지 제외하고 표시</string>
+    <string name="apk_list_only_system">시스템 패키지만 표시</string>
 
     // DangerApkListActivity 전용 텍스트
     <string name="example">예시</string>
     <string name="internet">인터넷 사용여부 :  </string>
+    <string name="danger_list_all">모든 패키지</string>
+    <string name="danger_list_red">위험(RED) 패키지만 표시</string>
+    <string name="danger_list_yellow">주의(YELLOW) 패키지만 표시</string>
+    <string name="danger_list_green">안전(GREEN) 패키지만 표시</string>
 
     // MainActivity 전용 텍스트
     <string name="notice_title">Notice</string>

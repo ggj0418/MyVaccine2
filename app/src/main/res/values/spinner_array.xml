@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Classification">
-        <item>모든 패키지</item>
-        <item>시스템 패키지 제외하고 표시</item>
-        <item>시스템 패키지만 표시</item>
+        <item>@string/apk_list_all_package</item>
+        <item>@string/apk_list_except_system</item>
+        <item>@string/apk_list_only_system</item>
     </string-array>
 
     <string-array name="Classification_Danger">
-        <item>모든 패키지</item>
-        <item>위험(RED) 패키지만 표시</item>
-        <item>주의(YELLOW) 패키지만 표시</item>
-        <item>안전(GREEN) 패키지만 표시</item>
+        <item>@string/danger_list_all</item>
+        <item>@string/danger_list_red</item>
+        <item>@string/danger_list_yellow</item>
+        <item>@string/danger_list_green</item>
     </string-array>
 </resources>

@@ -39,6 +39,9 @@ public class DangerApkListActivity extends AppCompatActivity {
     private static final int SELECT_YELLOW = 2;
     private static final int SELECT_GREEN = 3;
 
+    int listViewIndex = 0, spinnerPosition = 0;
+    boolean isHomePressed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +88,9 @@ public class DangerApkListActivity extends AppCompatActivity {
 
         // 모든 패키지들을 위험도 여부 판단하는 함수로 넘김
         dangerPackageInfoList = DangerPackageMethod.getDangerPackageInfo(packageList);
-        // 리스트 조건 정렬을 위해 동일한 값을 Copy 리스트에 저장
-        dangerPackageInfoListCopy.addAll(dangerPackageInfoList);
 
         // 어뎁터 연결
-        dangerApkAdapter = new DangerApkAdapter(dangerPackageInfoList, this, packageManager, res);
+        dangerApkAdapter = new DangerApkAdapter(dangerPackageInfoListCopy, this, packageManager, res);
         dangerApkListView = (ListView) findViewById(R.id.dangerapplist);
         dangerApkListView.setAdapter(dangerApkAdapter);
 
@@ -100,42 +101,58 @@ public class DangerApkListActivity extends AppCompatActivity {
                 switch (position) {
                     // 모든 패키지 선택 시, 디바이스에 있는 모든 패키지 출력
                     case SELECT_ALL:
-                        dangerPackageInfoList.clear();
-                        dangerPackageInfoList.addAll(dangerPackageInfoListCopy);
+                        dangerPackageInfoListCopy.clear();
+                        listViewIndex = 0;
+
+                        dangerPackageInfoListCopy.addAll(dangerPackageInfoList);
                         dangerApkAdapter.notifyDataSetChanged();
+                        // 스피너 선택 시 생성되는 리스트는 항상 최상단에 포커싱이 가도록 유지
+                        dangerApkListView.setSelection(listViewIndex);
                         break;
                     // 위험 패키지 선택 시, 위험군에 속하는 패키지 출력
                     case SELECT_RED:
-                        dangerPackageInfoList.clear();
-                        for (int i = 0; i < dangerPackageInfoListCopy.size(); i++) {
-                            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoListCopy.get(i);
+                        dangerPackageInfoListCopy.clear();
+                        listViewIndex = 0;
+
+                        for (int i = 0; i < dangerPackageInfoList.size(); i++) {
+                            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoList.get(i);
                             if (dangerPackageInfo.getDangerDegree() <= 23 && dangerPackageInfo.getDangerDegree() > 15) {
-                                dangerPackageInfoList.add(dangerPackageInfo);
+                                dangerPackageInfoListCopy.add(dangerPackageInfo);
                             }
                         }
                         dangerApkAdapter.notifyDataSetChanged();
+                        // 스피너 선택 시 생성되는 리스트는 항상 최상단에 포커싱이 가도록 유지
+                        dangerApkListView.setSelection(listViewIndex);
                         break;
                     // 주의 패키지 선택 시, 주의해야할 패키지 출력
                     case SELECT_YELLOW:
-                        dangerPackageInfoList.clear();
-                        for (int i = 0; i < dangerPackageInfoListCopy.size(); i++) {
-                            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoListCopy.get(i);
+                        dangerPackageInfoListCopy.clear();
+                        listViewIndex = 0;
+
+                        for (int i = 0; i < dangerPackageInfoList.size(); i++) {
+                            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoList.get(i);
                             if (dangerPackageInfo.getDangerDegree() <= 15 && dangerPackageInfo.getDangerDegree() > 7) {
-                                dangerPackageInfoList.add(dangerPackageInfo);
+                                dangerPackageInfoListCopy.add(dangerPackageInfo);
                             }
                         }
                         dangerApkAdapter.notifyDataSetChanged();
+                        // 스피너 선택 시 생성되는 리스트는 항상 최상단에 포커싱이 가도록 유지
+                        dangerApkListView.setSelection(listViewIndex);
                         break;
                     // 안전 패키지 선택 시, 퍼미션적으로 안전한 패키지 출력
                     case SELECT_GREEN:
-                        dangerPackageInfoList.clear();
-                        for (int i = 0; i < dangerPackageInfoListCopy.size(); i++) {
-                            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoListCopy.get(i);
+                        dangerPackageInfoListCopy.clear();
+                        listViewIndex = 0;
+
+                        for (int i = 0; i < dangerPackageInfoList.size(); i++) {
+                            DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoList.get(i);
                             if (dangerPackageInfo.getDangerDegree() <= 7 && dangerPackageInfo.getDangerDegree() >= 0) {
-                                dangerPackageInfoList.add(dangerPackageInfo);
+                                dangerPackageInfoListCopy.add(dangerPackageInfo);
                             }
                         }
                         dangerApkAdapter.notifyDataSetChanged();
+                        // 스피너 선택 시 생성되는 리스트는 항상 최상단에 포커싱이 가도록 유지
+                        dangerApkListView.setSelection(listViewIndex);
                         break;
                     default:
                         break;
@@ -147,5 +164,64 @@ public class DangerApkListActivity extends AppCompatActivity {
 
             }
         });
+
+        // 홈버튼을 누른 뒤 돌아왔을 때, 해당하는 스피너 리스트 위치를 기억했다가 포커싱
+        if(isHomePressed) {
+            if(spinnerPosition == 0) {
+                dangerPackageInfoListCopy.clear();
+                dangerPackageInfoListCopy.addAll(dangerPackageInfoList);
+                dangerApkAdapter.notifyDataSetChanged();
+                setListViewFocusing(listViewIndex);
+            } else if(spinnerPosition == 1) {
+                dangerPackageInfoListCopy.clear();
+
+                for (int i = 0; i < dangerPackageInfoList.size(); i++) {
+                    DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoList.get(i);
+                    if (dangerPackageInfo.getDangerDegree() <= 23 && dangerPackageInfo.getDangerDegree() > 15) {
+                        dangerPackageInfoListCopy.add(dangerPackageInfo);
+                    }
+                }
+                dangerApkAdapter.notifyDataSetChanged();
+                setListViewFocusing(listViewIndex);
+            } else if(spinnerPosition == 2){
+                dangerPackageInfoListCopy.clear();
+
+                for (int i = 0; i < dangerPackageInfoList.size(); i++) {
+                    DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoList.get(i);
+                    if (dangerPackageInfo.getDangerDegree() <= 15 && dangerPackageInfo.getDangerDegree() > 7) {
+                        dangerPackageInfoListCopy.add(dangerPackageInfo);
+                    }
+                }
+                dangerApkAdapter.notifyDataSetChanged();
+                setListViewFocusing(listViewIndex);
+            } else {
+                dangerPackageInfoListCopy.clear();
+
+                for (int i = 0; i < dangerPackageInfoList.size(); i++) {
+                    DangerPackageInfo dangerPackageInfo = (DangerPackageInfo) dangerPackageInfoList.get(i);
+                    if (dangerPackageInfo.getDangerDegree() <= 7 && dangerPackageInfo.getDangerDegree() >= 0) {
+                        dangerPackageInfoListCopy.add(dangerPackageInfo);
+                    }
+                }
+                dangerApkAdapter.notifyDataSetChanged();
+                setListViewFocusing(listViewIndex);
+            }
+        }
+
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        listViewIndex = dangerApkListView.getFirstVisiblePosition();
+        spinnerPosition = spinner.getSelectedItemPosition();
+        isHomePressed = true;
+        super.onUserLeaveHint();
+    }
+
+    // 홈버튼으로 back에서 fore로 돌아온 경우 사용자가 보고 있던 위치 재 포커싱
+    private void setListViewFocusing(int position) {
+        dangerApkListView.setSelection(listViewIndex);
+        listViewIndex = 0;
+        isHomePressed = false;
     }
 }
