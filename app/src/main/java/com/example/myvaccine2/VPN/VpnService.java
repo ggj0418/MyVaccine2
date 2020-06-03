@@ -1,7 +1,10 @@
 package com.example.myvaccine2.VPN;
 
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
@@ -51,6 +54,11 @@ public class VpnService extends android.net.VpnService {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // VPN을 중지시키기 위한 브로드캐스트
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.registerReceiver(stopVPNReceiver, new IntentFilter("stop"));
+
         isRunning = true;
         setupVPN();
 
@@ -89,6 +97,18 @@ public class VpnService extends android.net.VpnService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;
     }
+
+    // VPN 중지를 위한 브로드캐스트 리시버
+    private BroadcastReceiver stopVPNReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if("stop".equals(intent.getAction())) {
+                // stopSelf 만으로는 VPN이 중지되지 않고 cleanup으로 관련 리소스들을 전부 해제시켜야함
+                cleanup();
+                stopSelf();
+            }
+        }
+    };
 
     public static boolean isRunning() {
         return isRunning;

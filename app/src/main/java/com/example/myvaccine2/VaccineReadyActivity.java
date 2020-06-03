@@ -54,7 +54,7 @@ public class VaccineReadyActivity extends AppCompatActivity {
         if (requestCode == VPN_REQUEST_CODE && resultCode == RESULT_OK) {
             waitingForVPNStart = true;
             startService(new Intent(this, VpnService.class));
-            enableButton(false);
+//            enableButton(false);
         }
     }
 
@@ -81,6 +81,14 @@ public class VaccineReadyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startVPN();
                 notificationSetting();
+            }
+        });
+        final Button button2 = (Button) findViewById(R.id.vra_vpn_stop_button);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent stopVPNIntent = new Intent("stop");
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(stopVPNIntent);
             }
         });
         waitingForVPNStart = false;
@@ -114,12 +122,12 @@ public class VaccineReadyActivity extends AppCompatActivity {
                 .Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground)) //BitMap 이미지 요구
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText("VPN을 중지시키려면 터치하세요")
+                .setContentText("VPN이 실행중입니다")
                 // 더 많은 내용이라서 일부만 보여줘야 하는 경우 아래 주석을 제거하면 setContentText에 있는 문자열 대신 아래 문자열을 보여줌
                 // .setStyle(new NotificationCompat.BigTextStyle().bigText("더 많은 내용을 보여줘야 하는 경우..."))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // .setContentIntent(pendingIntent) // 사용자가 노티피케이션을 탭시 ResultActivity로 이동하도록 설정
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setAutoCancel(true);
+                // .setContentIntent(pendingIntent) // 사용자가 노티피케이션을 탭시 ResultActivity로 이동하도록 설정
 
         //OREO API 26 이상에서는 채널 필요
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -146,7 +154,9 @@ public class VaccineReadyActivity extends AppCompatActivity {
         // DB에서 받아온 비콘 정보를 리스트에 저장
 //        beaconInfoList = APICallMethod.getBeaconInfo();
         super.onResume();
-        enableButton(!waitingForVPNStart && !VpnService.isRunning());
+//        VpnService vpnService = new VpnService();
+//        vpnService.cleanup();
+//        enableButton(!waitingForVPNStart && !VpnService.isRunning());
     }
 }
 
