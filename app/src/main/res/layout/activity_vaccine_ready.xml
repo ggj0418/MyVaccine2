@@ -6,6 +6,17 @@
     android:orientation="vertical"
     tools:context=".VaccineReadyActivity">
 
+    <Button
+        android:id="@+id/vra_vpn_start_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:background="#7aeee0"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Start Vpn"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -105,9 +116,9 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:background="#7aeee0"
-            android:text="@string/vra_start_button"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:text="@string/vra_start_button"
             />
 
     </LinearLayout>
