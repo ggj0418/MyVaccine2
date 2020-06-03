@@ -35,6 +35,8 @@
         <!--VPN 사용을 위한 service 추가-->
         <service
             android:name=".VPN.VpnService"
+            android:enabled="true"
+            android:exported="true"
             android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
                 <action android:name="android.net.VpnService"/>
