@@ -1,4 +1,4 @@
-package com.example.myvaccine2.VPN;
+package com.example.myvaccine2.LocalVPN;
 
 import android.util.Log;
 
@@ -15,8 +15,8 @@ import java.nio.channels.SocketChannel;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import com.example.myvaccine2.VPN.Packet.TCPHeader;
-import com.example.myvaccine2.VPN.TCB.TCBStatus;
+import com.example.myvaccine2.LocalVPN.Packet.TCPHeader;
+import com.example.myvaccine2.LocalVPN.TCB.TCBStatus;
 
 public class TCPOutput implements Runnable{
     private static final String TAG = TCPOutput.class.getSimpleName();

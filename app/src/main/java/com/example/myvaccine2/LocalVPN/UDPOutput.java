@@ -1,4 +1,4 @@
-package com.example.myvaccine2.VPN;
+package com.example.myvaccine2.LocalVPN;
 
 import android.util.Log;
 
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
@@ -16,7 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class UDPOutput implements Runnable{
+public class UDPOutput implements Runnable {
     private static final String TAG = UDPOutput.class.getSimpleName();
 
     private VpnService vpnService;

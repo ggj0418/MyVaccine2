@@ -16,21 +16,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.myvaccine2.API.APICallMethod;
-import com.example.myvaccine2.Privacy.Method;
-import com.example.myvaccine2.VPN.VpnService;
-
-import java.util.List;
-import java.util.concurrent.Callable;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import com.example.myvaccine2.LocalVPN.VpnService;
 
 // DB에서 웹 비콘 정보를 받은 후 이를 디바이스에 심는 액티비티
 public class VaccineReadyActivity extends AppCompatActivity {

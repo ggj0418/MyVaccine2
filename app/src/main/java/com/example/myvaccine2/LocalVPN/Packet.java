@@ -1,4 +1,4 @@
-package com.example.myvaccine2.VPN;
+package com.example.myvaccine2.LocalVPN;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

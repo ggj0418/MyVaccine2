@@ -1,4 +1,4 @@
-package com.example.myvaccine2.VPN;
+package com.example.myvaccine2.LocalVPN;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -19,7 +19,5 @@ public class ByteBufferPool {
         pool.offer(buffer);
     }
 
-    public static void clear() {
-        pool.clear();
-    }
+    public static void clear() { pool.clear(); }
 }
