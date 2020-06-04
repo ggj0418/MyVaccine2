@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
@@ -18,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.Selector;
@@ -28,9 +31,9 @@ import java.util.concurrent.Executors;
 public class VpnService extends android.net.VpnService {
     private static final String TAG = VpnService.class.getSimpleName();
 
-    private static final String VPN_ADDRESS = "10.0.0.2";
+    private static final String VPN_ADDRESS = "10.0.0.1";
     private static final String VPN_ROUTE = "0.0.0.0";  // 모든 패킷 리스닝
-    private static final String REDIRECTION_ADDRESS = "127.0.0.1";
+//    private static final String REDIRECTION_ADDRESS = "127.0.0.1";
     public static final String BROADCAST_VPN_STATE = "com.example.myvaccine2.VPN.VPN_STATE";
 
     private static boolean isRunning = false;
@@ -110,13 +113,18 @@ public class VpnService extends android.net.VpnService {
         return isRunning;
     }
 
-    private void setupVPN()
-    {
+    private void setupVPN() {
         if (vpnInterface == null)
         {
             Builder builder = new Builder();
             builder.addAddress(VPN_ADDRESS, 32);
             builder.addRoute(VPN_ROUTE, 0);
+            try {
+                builder.addDisallowedApplication("com.android.chrome");
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
             vpnInterface = builder.setSession(getString(R.string.app_name)).setConfigureIntent(pendingIntent).establish();
         }
     }

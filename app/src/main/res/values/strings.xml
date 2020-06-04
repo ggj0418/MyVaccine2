@@ -45,4 +45,13 @@
     <string name="vra_start_button">비콘 삽입 시작</string>
     <string name="start_vpn">VPN 시작</string>
     <string name="stop_vpn">VPN 중지</string>
+
+    // ToyVPN
+    <string name="address">Server Address:</string>
+    <string name="port">Server Port:</string>
+    <string name="secret">Shared Secret:</string>
+    <string name="connect">Connect!</string>
+    <string name="connecting">ToyVPN is connecting..</string>
+    <string name="connected">ToyVPN is connected!</string>
+    <string name="disconnected">ToyVPN is disconnected!</string>
 </resources>

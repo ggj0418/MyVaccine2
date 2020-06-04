@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.myvaccine2.LocalVPN.VpnService;
 
@@ -31,6 +32,7 @@ public class VaccineReadyActivity extends AppCompatActivity {
     public List<String> beaconInfoList;*/
 
     private static final int VPN_REQUEST_CODE = 0x0F;
+    private static final int TOYVPN_REQUEST_CODE = 0x0E;
     private static final String NOTIFICATION_CHANNEL_ID = "10001";
 
     private boolean waitingForVPNStart;
@@ -42,6 +44,8 @@ public class VaccineReadyActivity extends AppCompatActivity {
             waitingForVPNStart = true;
             startService(new Intent(this, VpnService.class));
 //            enableButton(false);
+        } else {
+            Toast.makeText(this, "뭐든 간에 실패했습니다", Toast.LENGTH_LONG).show();
         }
     }
 

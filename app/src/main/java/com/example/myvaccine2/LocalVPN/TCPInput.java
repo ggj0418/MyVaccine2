@@ -100,7 +100,10 @@ public class TCPInput implements Runnable {
             int readBytes;
             try
             {
-                readBytes = inputChannel.read(receiveBuffer);
+                if (inputChannel.isOpen() && inputChannel.isConnected())
+                    readBytes = inputChannel.read(receiveBuffer);
+                else
+                    readBytes = 0;
             } catch (IOException e) {
                 Log.e(TAG, "Network read error: " + tcb.ipAndPort, e);
                 referencePacket.updateTCPBuffer(receiveBuffer, (byte) Packet.TCPHeader.RST, 0, tcb.myAcknowledgementNum, 0);
