@@ -32,7 +32,8 @@ import java.util.concurrent.Executors;
 
 public class VpnService extends android.net.VpnService {
     private static final String TAG = VpnService.class.getSimpleName();
-    private static final String VPN_ADDRESS = "10.0.0.2";
+    private static final String VPN_ADDRESS = "192.168.0.1";
+    private static final String VPN_DNS_SERVER = "8.8.8.8";
     private static final String VPN_ROUTE = "0.0.0.0";  // 모든 패킷 리스닝
 
     public static final String BROADCAST_VPN_STATE = "com.example.myvaccine2.VPN.VPN_STATE";
@@ -120,6 +121,7 @@ public class VpnService extends android.net.VpnService {
         {
             Builder builder = new Builder();
             builder.addAddress(VPN_ADDRESS, 32);
+            builder.addDnsServer(VPN_DNS_SERVER);
             builder.addRoute(VPN_ROUTE, 0);
             vpnInterface = builder.setSession(getString(R.string.app_name)).setConfigureIntent(pendingIntent).establish();
         }
