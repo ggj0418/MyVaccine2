@@ -33,13 +33,13 @@ public class Packet {
     @Override
     public String toString()
     {
-        final StringBuilder sb = new StringBuilder("Packet{");
+        final StringBuffer sb = new StringBuffer("Packet{");
         sb.append("ip4Header=").append(ip4Header);
         if (isTCP) sb.append(", tcpHeader=").append(tcpHeader);
         else if (isUDP) sb.append(", udpHeader=").append(udpHeader);
         sb.append(", payloadSize=").append(backingBuffer.limit() - backingBuffer.position());
         sb.append('}');
-        return sb.toString();
+        return new String(sb);
     }
 
     public boolean isTCP()
@@ -285,7 +285,7 @@ public class Packet {
         @Override
         public String toString()
         {
-            final StringBuilder sb = new StringBuilder("IP4Header{");
+            final StringBuffer sb = new StringBuffer("IP4Header{");
             sb.append("version=").append(version);
             sb.append(", IHL=").append(IHL);
             sb.append(", typeOfService=").append(typeOfService);
@@ -297,7 +297,7 @@ public class Packet {
             sb.append(", sourceAddress=").append(sourceAddress.getHostAddress());
             sb.append(", destinationAddress=").append(destinationAddress.getHostAddress());
             sb.append('}');
-            return sb.toString();
+            return new String(sb);
         }
     }
 
@@ -399,7 +399,7 @@ public class Packet {
         @Override
         public String toString()
         {
-            final StringBuilder sb = new StringBuilder("TCPHeader{");
+            final StringBuffer sb = new StringBuffer("TCPHeader{");
             sb.append("sourcePort=").append(sourcePort);
             sb.append(", destinationPort=").append(destinationPort);
             sb.append(", sequenceNumber=").append(sequenceNumber);
@@ -415,7 +415,7 @@ public class Packet {
             if (isACK()) sb.append(" ACK");
             if (isURG()) sb.append(" URG");
             sb.append('}');
-            return sb.toString();
+            return new String(sb);
         }
     }
 
@@ -448,13 +448,13 @@ public class Packet {
         @Override
         public String toString()
         {
-            final StringBuilder sb = new StringBuilder("UDPHeader{");
+            final StringBuffer sb = new StringBuffer("UDPHeader{");
             sb.append("sourcePort=").append(sourcePort);
             sb.append(", destinationPort=").append(destinationPort);
             sb.append(", length=").append(length);
             sb.append(", checksum=").append(checksum);
             sb.append('}');
-            return sb.toString();
+            return new String(sb);
         }
     }
 

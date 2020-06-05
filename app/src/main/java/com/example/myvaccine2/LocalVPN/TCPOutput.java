@@ -1,6 +1,7 @@
 package com.example.myvaccine2.LocalVPN;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 

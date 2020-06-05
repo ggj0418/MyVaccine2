@@ -50,13 +50,18 @@ public class VpnService extends android.net.VpnService {
     private Selector udpSelector;
     private Selector tcpSelector;
 
+    private Intent vpnDoneIntent;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        // VPN을 중지시키기 위한 브로드캐스트
+        // VPN을 중지시키기 위한 수신 브로드캐스트
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
         localBroadcastManager.registerReceiver(stopVPNReceiver, new IntentFilter("stop"));
+
+        // VPN 설정이 완료되었음을 알리는 발신 브로드캐스트
+        vpnDoneIntent = new Intent("Vpn_Done");
 
         isRunning = true;
         setupVPN();
@@ -76,10 +81,16 @@ public class VpnService extends android.net.VpnService {
             executorService.submit(new VPNRunnable(vpnInterface.getFileDescriptor(), deviceToNetworkUDPQueue, deviceToNetworkTCPQueue, networkToDeviceQueue));
             LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(BROADCAST_VPN_STATE).putExtra("running", true));
 
+            Thread.sleep(4000);
             Log.i(TAG, "Started");
+
+            // VaccineReadyActivity에게 VPN 설정이 안료되었다고 알림
+            LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(vpnDoneIntent);
         } catch (IOException e) {
             Log.e(TAG, "Error starting service", e);
             cleanup();
+        } catch (InterruptedException e) {
+            Log.e(TAG, "InterruptedException", e);
         }
     }
 

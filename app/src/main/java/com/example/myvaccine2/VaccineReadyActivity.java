@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.myvaccine2.Dialog.CustomAnimationDialog;
 import com.example.myvaccine2.LocalVPN.VpnService;
 
 // DB에서 웹 비콘 정보를 받은 후 이를 디바이스에 심는 액티비티
@@ -36,6 +37,7 @@ public class VaccineReadyActivity extends AppCompatActivity {
     private static final String NOTIFICATION_CHANNEL_ID = "10001";
 
     private boolean waitingForVPNStart;
+    private CustomAnimationDialog customAnimationDialog;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -59,6 +61,17 @@ public class VaccineReadyActivity extends AppCompatActivity {
         }
     };
 
+    // VPN 설정이 완료되었음을 알리는 브로드캐스트 리시버
+    private BroadcastReceiver vpnDoneReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if("Vpn_Done".equals(intent.getAction())) {
+                customAnimationDialog.dismiss();
+                notificationSetting();
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +83,8 @@ public class VaccineReadyActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                customAnimationDialog.show();
                 startVPN();
-                notificationSetting();
             }
         });
         final Button button2 = (Button) findViewById(R.id.vra_vpn_stop_button);
@@ -84,6 +97,9 @@ public class VaccineReadyActivity extends AppCompatActivity {
         });
         waitingForVPNStart = false;
         LocalBroadcastManager.getInstance(this).registerReceiver(vpnStateReceiver, new IntentFilter(VpnService.BROADCAST_VPN_STATE));
+        LocalBroadcastManager.getInstance(this).registerReceiver(vpnDoneReceiver, new IntentFilter("Vpn_Done"));
+
+        customAnimationDialog = new CustomAnimationDialog(VaccineReadyActivity.this);
     }
 
     private void startVPN() {
